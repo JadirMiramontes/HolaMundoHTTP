@@ -12,7 +12,8 @@ http.createServer(function (request,response){
             filepath = './index.html';
     }
 
-    var extname = String(path.extname(filePath)).toLowerCase();
+    var extname = String(path.extname(filepath)).toLowerCase();
+
     var contentType = 'text/html';
     var mimeTypes = {
         '.html' : 'text/html',
@@ -33,7 +34,7 @@ http.createServer(function (request,response){
 
     contentType = mimeTypes[extname] || 'application/octet-stream';
     
-    fs.readFile(filePath,function(error, content){
+    fs.readFile(filepath,function(error, content){
         if(error){
             if(error.code == 'ENONET'){
                 fs.readFile('./404.html',function(error,content){
